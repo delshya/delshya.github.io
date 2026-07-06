@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delshya · Product Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #5a5a55;
+    --ink-faint: #a8a89f;
+    --rule: #e2e0d8;
+    --bg: #faf9f6;
+    --bg-warm: #f3f1eb;
+    --accent: #3d5c4a;
+    --accent-light: #eef3f0;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+  }
+
+  .nav-name {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-mid);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 7rem 3rem 5rem;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    line-height: 1.08;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    max-width: 780px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--ink-mid);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+    padding: 5px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink-mid);
+    background: transparent;
+  }
+
+  .section-divider {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-label-text {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .section-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .impact-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 3.5rem;
+  }
+
+  .impact-cell {
+    background: var(--bg);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .impact-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+    font-weight: 400;
+  }
+
+  .impact-label {
+    font-size: 11px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .work-card {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .work-card[href]:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .work-card-type {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 2px;
+    width: fit-content;
+  }
+
+  .work-card h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+
+  .work-card-desc {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .work-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--rule);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    font-family: var(--mono);
+  }
+
+  .work-card-result {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    font-family: var(--sans);
+  }
+
+  .work-card-arrow {
+    font-size: 14px;
+    color: var(--ink-faint);
+    margin-left: auto;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    display: block;
+    text-align: right;
+    font-family: var(--mono);
+    transition: color 0.2s;
+  }
+
+  .work-card[href]:hover .work-card-arrow { color: var(--accent); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-group h4 {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .skill-list li {
+    font-size: 13.5px;
+    color: var(--ink-mid);
+  }
+
+  .skill-list li::before {
+    content: '—';
+    margin-right: 8px;
+    color: var(--rule);
+    font-family: var(--mono);
+  }
+
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .exp-item:first-child { border-top: 1px solid var(--rule); }
+
+  .exp-dates {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    padding-top: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  .exp-company {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-desc {
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  .contact-section {
+    background: var(--bg-warm);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .contact-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .contact-heading {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+    max-width: 400px;
+  }
+
+  .contact-heading em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-end;
+  }
+
+  .contact-link {
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover { color: var(--accent); }
+
+  .contact-link-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    min-width: 48px;
+    text-align: right;
+  }
+
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.25rem; }
+    .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero { padding-top: 4rem; }
+    .work-grid, .skills-grid { grid-template-columns: 1fr; }
+    .impact-strip { grid-template-columns: repeat(2, 1fr); }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .contact-inner { flex-direction: column; align-items: flex-start; }
+    .contact-links { align-items: flex-start; }
+    footer { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Delshya</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">Senior Product Marketing Manager</p>
+  <h1>Product marketing that makes<br><em>the complex feel obvious.</em></h1>
+  <p class="hero-bio">
+    10 years shaping how B2B SaaS products reach, convert, and retain the right customers.
+    I work at the intersection of product, brand, and revenue, turning positioning from a document into a growth lever.
+  </p>
+  <div class="hero-tags">
+    <span class="tag">GTM Strategy</span>
+    <span class="tag">Positioning & Messaging</span>
+    <span class="tag">Competitive Intelligence</span>
+    <span class="tag">Content Strategy</span>
+    <span class="tag">Sales Enablement</span>
+    <span class="tag">HR Tech</span>
+    <span class="tag">CRM</span>
+    <span class="tag">FinTech</span>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<section id="work">
+  <div class="section-label">
+    <span class="section-label-text">Selected work</span>
+    <span class="section-label-line"></span>
+  </div>
+
+  <div class="impact-strip">
+    <div class="impact-cell">
+      <div class="impact-num">68%</div>
+      <div class="impact-label">Conversion lift from messaging revamp</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">200+</div>
+      <div class="impact-label">Leads from a single messaging framework</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">64%</div>
+      <div class="impact-label">Lead gen increase from TOFU content strategy</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">500+</div>
+      <div class="impact-label">MQLs from partner events across the US</div>
+    </div>
+    <div class="impact-cell">
+      <div class="impact-num">79%</div>
+      <div class="impact-label">Traffic boost from website repositioning</div>
+    </div>
+  </div>
+
+  <div class="work-grid">
+
+    <!-- Card 1: PMM at Jisr deck -->
+    <a class="work-card" href="https://github.com/delshya/PMM/blob/eaeadfc0152000b55faa158b3f3fc4fe205dfe47/Building%20PMM%20from%20scratch.pptx.pdf" target="_blank" rel="noopener">
+      <span class="work-card-type">Strategy deck</span>
+      <h3>Building PMM from zero: impact in 12 months</h3>
+      <p class="work-card-desc">How strategic product marketing moved win rates from 7% to 46%, grew TCV 87%, and scaled upsell 717% in one year at a B2B HR SaaS company.</p>
+      <div class="work-card-meta">
+        <span>Jisr · 2025–2026</span>
+        <span class="work-card-result">Win rate 7% → 46%</span>
+      </div>
+      <span class="work-card-arrow">↗</span>
+    </a>
+
+    <!-- Card 2: Positioning & Messaging -->
+    <a class="work-card" href="https://github.com/delshya/PMM/blob/eaeadfc0152000b55faa158b3f3fc4fe205dfe47/Positioning%20%26%20Messaging.docx.pdf" target="_blank" rel="noopener">
+      <span class="work-card-type">Positioning framework</span>
+      <h3>Jisr Core HR: full positioning &amp; messaging framework</h3>
+      <p class="work-card-desc">Complete PMM framework: ICP definition, competitive positioning, StoryBrand narrative, value propositions by persona, and a three-pillar messaging architecture.</p>
+      <div class="work-card-meta">
+        <span>Jisr · 2025</span>
+        <span class="work-card-result">Informed website, sales decks & battlecards</span>
+      </div>
+    </div>
+
+    <!-- Card 3: GTM Enablement deck -->
+    <a class="work-card" href="https://github.com/delshya/PMM/blob/eaeadfc0152000b55faa158b3f3fc4fe205dfe47/GTM%20enablement.pptx.pdf" target="_blank" rel="noopener">
+      <span class="work-card-type">GTM strategy</span>
+      <h3>Content engine + sales enablement system</h3>
+      <p class="work-card-desc">A four-pronged content strategy paired with a full GTM enablement framework covering new hire onboarding, live training v2, and a quarterly certification program.</p>
+      <div class="work-card-meta">
+        <span>Jisr · 2025</span>
+        <span class="work-card-result">Scaled GTM readiness across commercial team</span>
+      </div>
+      <span class="work-card-arrow">↗</span>
+    </a>
+
+    <!-- Card 4: Competitive Intelligence -->
+    <a class="work-card" href="https://github.com/delshya/PMM/blob/98bc150a2b7999878761c56492c82d2f3c95c317/Competitive%20Analysis.docx.pdf" target="_blank" rel="noopener">
+      <span class="work-card-type">Competitive intelligence</span>
+      <h3>HR Tech competitive landscape, GCC market</h3>
+      <p class="work-card-desc">SWOT analysis, head-to-head positioning against SAP, Oracle, and local competitors, and a product differentiator framework informing sales and GTM strategy.</p>
+      <div class="work-card-meta">
+        <span>Jisr · 2025</span>
+        <span class="work-card-result">Informed messaging, battlecards & ICP strategy</span>
+      </div>
+    </div>
+
+    <!-- Card 5: Customer Marketing Playbook -->
+    <a class="work-card" href="https://github.com/delshya/PMM/blob/98bc150a2b7999878761c56492c82d2f3c95c317/Customer%20Marketing%20Playbook.docx.pdf" target="_blank" rel="noopener">
+      <span class="work-card-type">Playbook · Customer marketing</span>
+      <h3>Customer marketing playbook: from activation to advocacy</h3>
+      <p class="work-card-desc">A repeatable operating framework covering six programs across the full customer lifecycle, including the Earned Salary Access launch campaign, incident communications, and monthly product engagement programs.</p>
+      <div class="work-card-meta">
+        <span>Jisr · 2025</span>
+        <span class="work-card-result">Activation → adoption → expansion</span>
+      </div>
+      <span class="work-card-arrow">↗</span>
+    </a>
+
+    <!-- Card 6: Jisr landing pages -->
+    <a class="work-card" href="https://www.jisr.net/en/solutions/operations" target="_blank" rel="noopener">
+      <span class="work-card-type">Web copy · Landing pages</span>
+      <h3>Jisr product landing pages</h3>
+      <p class="work-card-desc">Positioning-led landing pages for HR Operations, Learning Management, and Saudi Compliance Management, written to convert mid-market HR buyers in the GCC.</p>
+      <div class="work-card-meta">
+        <span>Jisr · 2025</span>
+        <span class="work-card-result">68% conversion lift post-revamp</span>
+      </div>
+      <span class="work-card-arrow">↗</span>
+    </a>
+
+    <!-- Card 7: Fyle product video -->
+    <a class="work-card" href="https://www.youtube.com/watch?v=UCNEBgK5F8A" target="_blank" rel="noopener">
+      <span class="work-card-type">Sales enablement · Video</span>
+      <h3>Fyle product explainer video</h3>
+      <p class="work-card-desc">Storyboarded and produced a product explainer for Fyle's expense management platform, created as part of a broader sales enablement suite alongside battlecards and solution decks.</p>
+      <div class="work-card-meta">
+        <span>Fyle · 2022</span>
+        <span class="work-card-result">Part of Visa & Mastercard partnership launch</span>
+      </div>
+      <span class="work-card-arrow">↗</span>
+    </a>
+
+    <!-- Card 8: Facilio blog + ebook -->
+    <a class="work-card" href="https://facilio.com/blog/sustainability-reporting-frameworks/" target="_blank" rel="noopener">
+      <span class="work-card-type">Content · Blog & Ebook</span>
+      <h3>Facilio TOFU content: sustainability and facilities</h3>
+      <p class="work-card-desc">Educational blog posts and long-form ebooks introducing a new product to the US and UK markets, optimized for organic discovery and designed to move prospects from awareness to consideration.</p>
+      <div class="work-card-meta">
+        <span>Facilio · 2023–2024</span>
+        <span class="work-card-result">64% increase in lead generation</span>
+      </div>
+      <span class="work-card-arrow">↗</span>
+    </a>
+
+    <!-- Card 9: Jisr brand deck -->
+    <a class="work-card" href="https://github.com/delshya/PMM/blob/eaeadfc0152000b55faa158b3f3fc4fe205dfe47/The%20Jisr%20story.pdf" target="_blank" rel="noopener">
+      <span class="work-card-type">Brand · Sales deck</span>
+      <h3>Jisr brand narrative and sales deck</h3>
+      <p class="work-card-desc">The flagship sales deck positioning Jisr as the platform where HR and Finance move as one. Covers company story, product suite, customer proof, competitive differentiation, and implementation journey, used live with prospects.</p>
+      <div class="work-card-meta">
+        <span>Jisr · 2026</span>
+        <span class="work-card-result">Trusted by 5000+ companies</span>
+      </div>
+      <span class="work-card-arrow">↗</span>
+    </a>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="skills">
+  <div class="section-label">
+    <span class="section-label-text">What I bring</span>
+    <span class="section-label-line"></span>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Strategy</h4>
+      <ul class="skill-list">
+        <li>GTM planning & execution</li>
+        <li>Product positioning</li>
+        <li>Competitive analysis</li>
+        <li>Market segmentation & ICP</li>
+        <li>Pricing & packaging narrative</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Execution</h4>
+      <ul class="skill-list">
+        <li>Messaging frameworks</li>
+        <li>Website copy & narrative</li>
+        <li>Sales enablement content</li>
+        <li>Campaign strategy & copywriting</li>
+        <li>Content & SEO strategy</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Domains & tools</h4>
+      <ul class="skill-list">
+        <li>HR Tech · FinTech · CRM SaaS</li>
+        <li>HubSpot, Salesforce</li>
+        <li>B2B demand generation</li>
+        <li>Partner & co-marketing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="experience">
+  <div class="section-label">
+    <span class="section-label-text">Experience</span>
+    <span class="section-label-line"></span>
+  </div>
+
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-dates">2025–present</div>
+      <div>
+        <p class="exp-company">Jisr, HR Tech SaaS</p>
+        <p class="exp-role">Senior Product Marketing Manager</p>
+        <p class="exp-desc">Built the PMM function from scratch. Led GTM strategy, positioning, and messaging across the full product suite. Drove a website revamp that lifted conversions 68% and traffic 47%. Built the messaging framework that generated 200+ qualified leads. Grew upsell 717% and cross-sell 141% YoY through structured customer marketing programs.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dates">2023–2024</div>
+      <div>
+        <p class="exp-company">Facilio, Facilities and PropTech SaaS</p>
+        <p class="exp-role">Senior Product Marketing Associate</p>
+        <p class="exp-desc">Drove GTM campaigns across US and UK markets. Produced TOFU content (blogs, ebooks, thought leadership) that increased lead generation by 64%. Organized webinars that drove 150+ Sales Accepted Leads. Led retail vertical GTM activities generating 50+ new SALs from offline events.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dates">2020–2023</div>
+      <div>
+        <p class="exp-company">Fyle, FinTech SaaS</p>
+        <p class="exp-role">Partner Marketing Manager → Product Marketing Specialist</p>
+        <p class="exp-desc">Led website redesign that boosted traffic 79%. Built partner marketing programs with accounting firms and VARs, generating 100+ leads. Organized 10+ US events acquiring 500+ MQLs. Drove Visa and Mastercard partnership launch: storyboarding, GTM collateral, and sales enablement.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dates">2016–2020</div>
+      <div>
+        <p class="exp-company">LeadSquared, CRM SaaS</p>
+        <p class="exp-role">Lead, Content Marketing</p>
+        <p class="exp-desc">Managed content strategy and a team of writers. Produced SEO-driven articles, case studies, and feature pages that increased traffic 20% and contributed 16% to total MRR. Organized multi-city customer events generating 2.5L MRR per event.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-heading">Let's talk about your <em>next launch.</em></h2>
+    <div class="contact-links">
+      <a href="mailto:delshya28@gmail.com" class="contact-link">
+        <span class="contact-link-label">Email</span>
+        delshya28@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/delshya-selvaraj/" class="contact-link" target="_blank">
+        <span class="contact-link-label">LinkedIn</span>
+        linkedin.com/in/delshya-selvaraj
+      </a>
+      <a href="https://contra.com/delshya_selvaraj_pb1es436" class="contact-link" target="_blank">
+        <span class="contact-link-label">Contra</span>
+        contra.com/delshya_selvaraj
+      </a>
+      <a href="https://delshya.github.io" class="contact-link" target="_blank">
+        <span class="contact-link-label">GitHub</span>
+        delshya.github.io
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Delshya · Product Marketing</span>
+  <span>Available for freelance engagements</span>
+</footer>
+
+</body>
+</html>
